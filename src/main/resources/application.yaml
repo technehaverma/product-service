@@ -3,13 +3,27 @@ spring:
       name: product-service
    jpa:
       show-sql: true
+      properties:
+         hibernate:
+            jdbc:
+               time_zone: Asia/Kolkata
       hibernate:
-         ddl-auto: create-drop 
-   h2:
-      console:
-         enabled: true
+         ddl-auto: update
+      database-platform : org.hibernate.dialect.PostgreSQLDialect 
    datasource:
-      url: jdbc:h2:mem:test
+      #url: jdbc:postgresql://localhost:5432/productdb?options=-c%20timezone=Asia/Kolkata
+      url: jdbc:postgresql://ep-soft-snow-aqlxoysq-pooler.c-8.us-east-1.aws.neon.tech/product?sslmode=require&channel_binding=require
+      username: neondb_owner
+      password: npg_KNeMAtER81mG
+      
+   config:
+      import:
+         configserver:http://localhost:8888      
+#   h2:
+#      console:
+#         enabled: true
+#   datasource:
+#      url: jdbc:h2:mem:test
 server:
    port: 8083
 
